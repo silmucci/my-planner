@@ -1,0 +1,207 @@
+/* ======= TEMI (default: Rosa vivo) ======= */
+:root{
+  --bg-page:#dd7aa2; --bg-card:#fff; --bg-head:#ffe9f0; --bg-cell:#fff; --bg-cell-hover:#e14b78;
+  --grid:#c4638a; --ink:#aa225b; --ink-weak:#fb05c1;
+  --accent:#c83d70; --accent-strong:#ff9fc3;
+  --border-strong:#0e0e10;
+  --radius:18px;
+  --pattern-size:48px;
+}
+
+/* Temi aggiuntivi */
+[data-theme="blue"]{
+  --bg-page:#e6f0ff; --bg-card:#fff; --bg-head:#cce0ff; --bg-cell:#fff; --bg-cell-hover:#e0ebff;
+  --grid:#5374a6; --ink:#0a1a33; --ink-weak:#1a3d80; --accent:#3399ff; --accent-strong:#0066ff; --border-strong:#003366;
+}
+[data-theme="green"]{
+  --bg-page:#25f151; --bg-card:#fff; --bg-head:#d4ffd9; --bg-cell:#fff; --bg-cell-hover:#e8ffec;
+  --grid:#29c145; --ink:#003319; --ink-weak:#006633; --accent:#00e65c; --accent-strong:#00b84d; --border-strong:#004d26;
+}
+[data-theme="purple"]{
+  --bg-page:#9e71c5; --bg-card:#fff; --bg-head:#eed6ff; --bg-cell:#fff; --bg-cell-hover:#f4e0ff;
+  --grid:#c299ff; --ink:#7835ba; --ink-weak:#4d0099; --accent:#a64dff; --accent-strong:#7a00cc; --border-strong:#3d007a;
+}
+[data-theme="orange"]{
+  --bg-page:#e9710e; --bg-card:#fff; --bg-head:#ffd6b3; --bg-cell:#fff; --bg-cell-hover:#ffe6cc;
+  --grid:#ffb366; --ink:#4a1a00; --ink-weak:#802b00; --accent:#ff8000; --accent-strong:#ff5e00; --border-strong:#db5b1b;
+}
+[data-theme="yellow"]{
+  --bg-page:#e4e420; --bg-card:#fff; --bg-head:#ede26a; --bg-cell:#fff; --bg-cell-hover:#f4e911;
+  --grid:#ffeb66; --ink:#473f00; --ink-weak:#806600; --accent:#ffee00; --accent-strong:#ffcc00; --border-strong:#f1d04b;
+}
+[data-theme="red"]{
+  --bg-page:#d63636; --bg-card:#fff; --bg-head:#ffc2c2; --bg-cell:#fff; --bg-cell-hover:#ffd6d6;
+  --grid:#aa1616; --ink:#2b0000; --ink-weak:#7a0000; --accent:#ff3333; --accent-strong:#cc0000; --border-strong:#7a0000;
+}
+[data-theme="black"]{
+  --bg-page:#000; --bg-card:#010000; --bg-head:#0d0101; --bg-cell:#111; --bg-cell-hover:#1f1f1f;
+  --grid:#333; --ink:#f9fafb; --ink-weak:#d1d5db; --accent:#ffae00; --accent-strong:#ff7b00; --border-strong:#f9fafb;
+}
+[data-theme="gray"]{
+  --bg-page:#f4f4f4; --bg-card:#fff; --bg-head:#e0e0e0; --bg-cell:#fff; --bg-cell-hover:#ededed;
+  --grid:#c4c4c4; --ink:#111; --ink-weak:#444; --accent:#9ca3af; --accent-strong:#555; --border-strong:#111;
+}
+[data-theme="black"] .btn,
+[data-theme="black"] .tab { color:#fff; border-color:#555; }
+[data-theme="black"] .btn:hover,
+[data-theme="black"] .tab:hover,
+[data-theme="black"] .tab.active { background:var(--accent-strong); color:#fff; }
+
+/* ======= BASE ======= */
+*{ box-sizing:border-box }
+html, body, #root{ height:100% }
+body{ margin:0; font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial; color:var(--ink); background:var(--bg-page); }
+
+/* ======= PATTERN DI PAGINA ======= */
+.page{ min-height:100vh; display:flex; justify-content:center; background:var(--bg-page); }
+.page.page--pattern{ background-repeat:repeat; background-size:var(--pattern-size) var(--pattern-size); background-position:0 0; }
+.page.page--pattern[data-bg="bows"]    { background-image:url("/img/pattern-bows.png"); }
+.page.page--pattern[data-bg="basket"]  { background-image:url("/img/pattern-basket.png"); }
+.page.page--pattern[data-bg="leaves"]  { background-image:url("/img/pattern-leaves.png"); }
+.page.page--pattern[data-bg="love"]    { background-image:url("/img/pattern-love.png"); }
+.page.page--pattern[data-bg="star"]    { background-image:url("/img/pattern-star.png"); }
+.page.page--pattern[data-bg="alien"]   { background-image:url("/img/pattern-alieno.png"); }
+.page.page--pattern[data-bg="balloon"] { background-image:url("/img/pattern-palloncino.jpg"); }
+.page.page--pattern[data-bg="asroma"]  { background-image:url("/img/pattern-asroma.png"); }
+.page.page--pattern[data-bg="ciliege"] { background-image:url("/img/pattern-ciliege.png"); }
+.page.page--pattern[data-bg="pois"]    { background-image:url("/img/pattern-pois.png"); }
+.page.page--pattern[data-bg="moon"]    { background-image:url("/img/pattern-moon.png"); }
+
+/* Card planner */
+.planner{
+  width:min(1200px,96vw); margin:24px auto 40px; background:var(--bg-card);
+  border:1px solid var(--grid); border-radius:calc(var(--radius) + 6px);
+  box-shadow:0 10px 30px rgba(0,0,0,.06); padding:18px; display:flex; flex-direction:column; gap:8px;
+  position:relative;
+}
+.page.page--pattern .planner::before{
+  content:""; position:absolute; inset:0; background:var(--bg-card);
+  border-radius:calc(var(--radius) + 6px); z-index:0; pointer-events:none;
+}
+.planner > *{ position:relative; z-index:1 }
+
+/* Pattern trasparente sull’intero planner quando sei nel Giornaliero */
+.planner--daily-pattern::after{
+  content:""; position:absolute; inset:0; z-index:0; opacity:.22; pointer-events:none;
+  background-repeat:repeat; background-size:var(--pattern-size) var(--pattern-size); background-position:0 0;
+}
+.planner--daily-pattern[data-bg="bows"]::after    { background-image:url("/img/pattern-bows.png"); }
+.planner--daily-pattern[data-bg="basket"]::after  { background-image:url("/img/pattern-basket.png"); }
+.planner--daily-pattern[data-bg="leaves"]::after  { background-image:url("/img/pattern-leaves.png"); }
+.planner--daily-pattern[data-bg="love"]::after    { background-image:url("/img/pattern-love.png"); }
+.planner--daily-pattern[data-bg="star"]::after    { background-image:url("/img/pattern-star.png"); }
+.planner--daily-pattern[data-bg="alien"]::after   { background-image:url("/img/pattern-alieno.png"); }
+.planner--daily-pattern[data-bg="balloon"]::after { background-image:url("/img/pattern-palloncino.jpg"); }
+.planner--daily-pattern[data-bg="asroma"]::after  { background-image:url("/img/pattern-asroma.png"); }
+.planner--daily-pattern[data-bg="ciliege"]::after { background-image:url("/img/pattern-ciliege.png"); }
+.planner--daily-pattern[data-bg="pois"]::after    { background-image:url("/img/pattern-pois.png"); }
+.planner--daily-pattern[data-bg="moon"]::after    { background-image:url("/img/pattern-moon.png"); }
+
+/* Top bar */
+.topbar{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+.title{ margin:0; letter-spacing:.12em; text-transform:uppercase; font-size:20px; }
+.right-tools{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.select,.input{ height:36px; padding:6px 10px; border:1px solid var(--grid); border-radius:10px; background:var(--bg-card); }
+.monthbox{ min-width:220px; text-align:center; padding:8px 12px; border:1px solid var(--grid); border-radius:10px; background:var(--bg-head); font-weight:800; }
+
+/* Tabs */
+.tabs{ display:inline-flex; gap:8px; }
+.tab{ border:1px solid var(--grid); background:var(--bg-head); padding:6px 10px; border-radius:10px; cursor:pointer; font-weight:800; }
+.tab:hover{ background:var(--accent); color:#fff; }
+.tab.active{ background:var(--accent-strong); color:#fff; }
+
+/* Griglia mensile */
+.month-grid{
+  display:grid; grid-template-columns:repeat(7,1fr);
+  grid-template-rows:auto repeat(6, minmax(110px, 1fr));
+  border:1px solid var(--border-strong); border-radius:var(--radius); overflow:hidden; width:100%;
+}
+.month-grid > *{ min-width:0 }
+.cell{ box-sizing:border-box; padding-left:8px; padding-right:8px; }
+.cell.head{
+  background:var(--bg-head); padding:6px 0; min-height:42px; text-align:center;
+  font-weight:800; font-size:16px; line-height:1.1; border-bottom:1px solid var(--border-strong);
+}
+.cell.day{
+  min-height:110px; background:var(--bg-cell); border-right:1px solid var(--border-strong); border-bottom:1px solid var(--border-strong);
+  position:relative; padding:8px; text-align:left; cursor:pointer; overflow:hidden;
+}
+.month-grid .cell:nth-child(7n){ border-right:none }
+.day:hover{ background:var(--bg-cell-hover) }
+.day.out{ opacity:.55 }
+.day.today{ outline:2px solid var(--accent-strong); outline-offset:-2px }
+.day__num{ font-size:12px; font-weight:800; color:var(--ink-weak) }
+.mini{ list-style:none; margin:6px 2px 0; padding:0; font-size:12px; overflow:hidden; }
+.mini li{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+.mini li.done{ text-decoration:line-through; opacity:.65 }
+.mini li.more{ opacity:.7 }
+
+/* Nav */
+.nav{ display:flex; justify-content:space-between; gap:8px; margin-top:8px }
+.btn{ height:36px; padding:0 12px; border:1px solid var(--grid); border-radius:10px; background:var(--bg-head); font-weight:800; cursor:pointer }
+.btn:hover{ background:var(--accent); color:#fff }
+.link{ background:none; border:none; color:var(--accent-strong); cursor:pointer; font-weight:800 }
+
+/* ======= Giornaliero ======= */
+/* riga unica desktop; adattiva su tablet/mobile */
+.daily-form{ margin-top:6px; }
+.daily-row{
+  display:grid;
+  /* Data | Ora inizio | Ora fine | Ripetizione | Titolo | Aggiungi */
+  grid-template-columns: 200px 140px 140px 200px 1fr auto;
+  gap:10px; align-items:center;
+}
+.ctrl{ height:44px; padding:0 12px; border:1px solid var(--grid); border-radius:12px; background:var(--bg-card); font-size:16px; }
+.btn-lg{ height:44px; padding:0 16px; border:1px solid var(--grid); border-radius:12px; background:var(--bg-head); font-weight:800; cursor:pointer; }
+.btn-lg:hover{ background:var(--accent); color:#fff; }
+
+.daily-list{ list-style:none; margin:12px 0 0; padding:0; display:grid; gap:10px }
+.daily-list li{ display:flex; align-items:center; justify-content:space-between; border:1px solid var(--grid); border-radius:12px; padding:10px 12px; background:var(--bg-cell) }
+.strike{ text-decoration:line-through; opacity:.65 }
+.empty{ opacity:.7 }
+
+/* Responsive: tablet */
+@media (max-width: 900px){
+  .daily-row{
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      "date start end repeat"
+      "title title title add";
+  }
+  .ctrl--date{ grid-area: date; }
+  .ctrl--start{ grid-area: start; }
+  .ctrl--end{ grid-area: end; }
+  .ctrl--repeat{ grid-area: repeat; }
+  .ctrl--title{ grid-area: title; }
+  .btn--add{ grid-area: add; width:100%; }
+}
+
+/* Responsive: mobile */
+@media (max-width: 560px){
+  .daily-row{
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "date date"
+      "start end"
+      "repeat repeat"
+      "title title"
+      "add add";
+  }
+}
+ 
+/* Drawer laterale (resoconto) */
+.backdrop{
+  position:fixed; inset:0; background:rgba(0,0,0,.35);
+  display:flex; justify-content:flex-end; align-items:stretch; z-index:999999;
+}
+.drawer{
+  width:min(460px, 92vw); height:100%; background:var(--bg-card);
+  border-left:1px solid var(--grid); box-shadow:-12px 0 32px rgba(0,0,0,.25);
+  padding:16px; display:flex; flex-direction:column; gap:12px;
+  border-top-left-radius:calc(var(--radius) + 4px); border-bottom-left-radius:calc(var(--radius) + 4px);
+  outline:none;
+}
+.drawer__title{
+  font-weight:800; font-size:18px; background:var(--bg-head);
+  border:1px solid var(--grid); border-radius:10px; padding:8px 10px;
+}
